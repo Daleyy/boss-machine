@@ -1,4 +1,11 @@
-const checkMillionDollarIdea = () => {};
+const checkMillionDollarIdea = (req, res, next) => {
+    const ideaValue = req.body.weeklyRevenue * req.body.numWeeks
+    if (!ideaValue || ideaValue < 1000000) {
+        res.status(400).send()
+    } else {
+        console.log(ideaValue)
+        next()
+    }
+};
 
-// Leave this exports assignment so that the function can be used elsewhere
 module.exports = checkMillionDollarIdea;
